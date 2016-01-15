@@ -1,0 +1,86 @@
+{# begin {templatelocation} #}
+
+{cc_groups}
+
+<!-- BEGIN ccgroup -->
+<h2>{lang_group}</h2>
+
+<ul class="admin-commandcontrol clearfix">
+{cc_rows}
+</ul>
+<!-- END ccgroup -->
+<!-- BEGIN ccrow -->
+{cc_main_options}
+<!-- END ccrow -->
+<!-- BEGIN ccitem -->
+<li><a href="{page_url}" style="text-align:center"{target}><img src="{page_image}" style="display:block;margin:5px auto" alt=""{xhtml}>{option_label}</a></li>
+<!-- END ccitem -->
+
+ 
+
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+<h2>Theme - <?php global $TLANG; echo $TLANG['theme_name']; ?> 1.1</h2>
+<h3 style="padding-left:20px;">Settings</h3>
+<blockquote>
+<?php
+//New settings
+if(isset($_POST['submit'])) 
+{ 
+	//Save settings to file
+	$style = '.navigation_bg { background-color:' . $_POST['navigation_bg'] . '; }' . LB ;
+	$style .= '#footer { background-color:' . $_POST['footer_bg'] . '; }' . LB ;
+	$style .= '.header_bg1 { background-color: ' . $_POST['header_bg1'] . '; }' . LB ;
+	$style .= '.header_bg2 { background-color: ' . $_POST['header_bg2'] . '; }' . LB ;
+	$style .= '#header { background: rgba(0, 0, 0, 0) linear-gradient(to bottom, ' . $_POST['header_bg1'] . ', ' . $_POST['header_bg2'] . ' 50%, ' . $_POST['header_bg2'] . ' 90%, ' . $_POST['header_bg1'] . ') repeat scroll 0 0; }' . LB ;
+	$style .= '/* end of custom settings */';
+	
+	file_put_contents($_CONF['path_data'] . $_CONF['theme'] . '_style.txt', $style);
+}
+// Select settings from file
+function parse($file){
+    $css = file_get_contents($file);
+    preg_match_all( '/(?ims)([a-z0-9\s\.\:#_\-@,]+)\{([^\}]*)\}/', $css, $arr);
+    $result = array();
+    foreach ($arr[0] as $i => $x){
+        $selector = trim($arr[1][$i]);
+        $rules = explode(';', trim($arr[2][$i]));
+        $rules_arr = array();
+        foreach ($rules as $strRule){
+            if (!empty($strRule)){
+                $rule = explode(":", $strRule);
+                $rules_arr[trim($rule[0])] = trim($rule[1]);
+            }
+        }
+
+        $selectors = explode(',', trim($selector));
+        foreach ($selectors as $strSel){
+            $result[$strSel] = $rules_arr;
+        }
+    }
+    return $result;
+}
+if(file_exists($_CONF['path_data'] . $_CONF['theme'] . '_style.txt')) $css = parse( $_CONF['path_data'] . $_CONF['theme'] . '_style.txt' );
+
+// use $css['#selector']['color'];
+//print_r($css);
+?>
+<h4>Header</h4>
+<h5>Gradiant top & bottom</h5>
+<p><input name="header_bg1" class="color no-alpha" value="<?php echo $css['.header_bg1']['background-color']; ?>" /></p>
+<h5>Gradiant center</h5>
+<p><input name="header_bg2" class="color no-alpha" value="<?php echo $css['.header_bg2']['background-color']; ?>" /></p>
+
+<?php  global $_PLUGINS; if(in_array('menu', $_PLUGINS)) {?>
+
+<h4>Navigation</h4>
+<p><input name="navigation_bg" class="color no-alpha" value="<?php echo $css['.navigation_bg']['background-color']; ?>" /></p>
+
+<?php } ?>
+
+<h4>Footer</h4>
+<p><input name="footer_bg" class="color no-alpha" value="<?php echo $css['#footer']['background-color']; ?>" /></p>
+<p><input type="submit" name="submit" value="Valid"></p>
+</blockquote>
+</form>
+
+{# end {templatelocation} #}
