@@ -1,0 +1,20 @@
+{# {templatelocation} - The Admin Navigation uses template blocks which is built into this file #}
+
+<!-- BEGIN group -->
+</ul>
+</ul>
+<ul id="menu-accordeon">
+<li>{group_label}
+<ul>
+<!-- END group -->
+<!-- BEGIN option -->
+<li class="adminoption sideoption"><a href="{option_url}"{target}>{option_label}{display_count}</a></li>
+<!-- END option -->
+<!-- BEGIN current -->
+<li class="adminoption_off sideoption_off">{option_label}{display_count}</li>
+<!-- END current -->
+<!-- BEGIN count -->
+<span>&nbsp;({option_count})</span>
+<!-- END count -->
+</li>
+
