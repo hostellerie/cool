@@ -1,0 +1,10 @@
+
+<!-- blockheader-list.thtml { -->
+<section class="block-list">
+  <h2 class="block-title">{block_title}{block_help}</h2>
+  <div class="uk-panel uk-margin-remove uk-padding-remove">
+  <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav>
+  <li class="uk-parent uk-h6 uk-margin-remove uk-padding-remove"><a href="#"><i class="uk-icon-bars  uk-margin-small-right"></i>{block_title}</a>
+    <ul class="uk-nav-sub">
+
+<!-- } blockheader-list.thtml -->

@@ -2,19 +2,16 @@
 
 <!-- BEGIN group -->
 </ul>
-</ul>
-<ul id="menu-accordeon">
-<li>{group_label}
-<ul>
+</li>
+<li class="uk-parent uk-h6"><a href="#"><i class="uk-icon-bars  uk-margin-small-right"></i>{group_label}</a>
+<ul class="uk-nav">
 <!-- END group -->
 <!-- BEGIN option -->
-<li class="adminoption sideoption"><a href="{option_url}"{target}>{option_label}{display_count}</a></li>
+<li><a href="{option_url}"{target}>{option_label}{display_count}</a></li>
 <!-- END option -->
 <!-- BEGIN current -->
-<li class="adminoption_off sideoption_off">{option_label}{display_count}</li>
+<li class="uk-active">{option_label}{display_count}</li>
 <!-- END current -->
 <!-- BEGIN count -->
-<span>&nbsp;({option_count})</span>
+<div class="uk-badge uk-badge-notification uk-margin-small-left">{option_count}</div>
 <!-- END count -->
-</li>
-
