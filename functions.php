@@ -116,11 +116,6 @@ function theme_js_files_cool()
             'file'      => '/layout/' . $_CONF['theme_default'] . '/javascript/script.js',
             'footer'    => true, // Not required, default = true
             'priority'  => 100 // Not required, default = 100
-        ),
-		array(
-            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/title2id.js',
-            'footer'    => true, // Not required, default = true
-            'priority'  => 100 // Not required, default = 100
         )
     );
 }
