@@ -125,7 +125,7 @@ function theme_js_files_cool()
  */
 function theme_init_cool()
 {
-    global $_BLOCK_TEMPLATE, $_CONF, $TLANG, $_SCRIPTS, $TEMPLATE_OPTIONS;
+    global $_BLOCK_TEMPLATE, $_CONF, $TLANG, $_SCRIPTS, $TEMPLATE_OPTIONS, $_USER;
 
     $_CONF['left_blocks_in_footer'] = 1;
 	$TEMPLATE_OPTIONS['override'] = 'denim';
@@ -154,8 +154,7 @@ function theme_init_cool()
         $_BLOCK_TEMPLATE['user_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
     }
 	
-	//Todo admin only
-	if (1 == 1) {
+	if (stripos(COM_getCurrentURL(), 'admin/index.php') !== FALSE) {
 		$theme_path = $_CONF['path_themes'] . $_CONF['theme'] . '/';
 		$langfile = $theme_path . 'language/' . $_CONF['language'] . '.php';
 
