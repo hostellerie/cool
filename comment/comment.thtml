@@ -1,0 +1,16 @@
+
+<!-- comment/comment.thtml { -->
+
+<article class="uk-comment block-comment-content level-{indent}">
+    <header class="uk-comment-header">
+        <div class="uk-comment-avatar">{author_photo}</div>
+        <h4 class="uk-comment-title">{title}</h4>
+        <div class="uk-comment-meta">{lang_authoredby}&nbsp;{author_link}&nbsp;{lang_on}&nbsp;{date}</div>
+    </header>
+    <div class="uk-comment-body">{comments}</div>
+	<div style="margin:15px;" class="uk-comment-meta" role="navigation" {hide_if_preview}>[
+   <span>{reply_option} {parent_link} {delete_option} <a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a></span>
+  ]</div>
+</article>
+
+<!-- } comment/comment.thtml -->
